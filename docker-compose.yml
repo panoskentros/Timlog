@@ -1,4 +1,21 @@
 services:
+  api:
+    build: .
+    container_name: timlog_api
+    ports:
+      - "5076:5076"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=timlog_db;Username=postgres;Password=mysecretpassword
+      - Telegram__BotToken=${TELEGRAM_BOT_TOKEN}
+      - Aade__BaseUrl=https://mydataapidev.aade.gr/
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://timlog_aspire_dashboard:18890
+    volumes:
+      - keys_data:/root/.aspnet/DataProtection-Keys
+    depends_on:
+      - postgres
+      - aspire-dashboard
+    restart: always
+
   postgres:
     image: postgres:16-alpine
     container_name: timlog_postgres
@@ -28,6 +45,7 @@ services:
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+
   aspire-dashboard:
     image: mcr.microsoft.com/dotnet/aspire-dashboard:latest
     container_name: timlog_aspire_dashboard
@@ -42,3 +60,4 @@ services:
 volumes:
   pgdata:
   ollama_data:
+  keys_data:

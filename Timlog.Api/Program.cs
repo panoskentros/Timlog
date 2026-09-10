@@ -29,10 +29,9 @@ Log.Logger = new LoggerConfiguration()
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-
-    var otlpEndpointUrl = "http://localhost:18890";
     
-    // 1. Ρύθμιση Traces & Metrics
+    var otlpEndpointUrl = builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"] ?? "http://localhost:18890";
+    
     builder.Services.AddOpenTelemetry()
         .ConfigureResource(resource => resource.AddService("Timlog.Api"))
         .WithTracing(tracing => tracing
@@ -133,6 +132,12 @@ try
     builder.Services.AddScoped<ICredentialEncryptionService, CredentialEncryptionService>();
 
     var app = builder.Build();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<TimlogDbContext>();
+        dbContext.Database.Migrate();
+    }
 
     app.UseForwardedHeaders();
 

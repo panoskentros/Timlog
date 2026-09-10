@@ -45,6 +45,16 @@ services:
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    profiles:
+      - tunnel
+
+  tunnel-temp:
+    image: cloudflare/cloudflared:latest
+    container_name: timlog_temp_tunnel
+    restart: always
+    command: tunnel --url http://api:5076
+    profiles:
+      - temp
 
   aspire-dashboard:
     image: mcr.microsoft.com/dotnet/aspire-dashboard:latest

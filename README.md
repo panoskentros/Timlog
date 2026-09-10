@@ -99,3 +99,18 @@ docker compose --profile temp down
 # ή
 docker compose --profile tunnel down
 ```
+
+## 6. Aspire Dashboard
+
+Το project περιλαμβάνει ενσωματωμένο το .NET Aspire Dashboard
+
+Για να δεις τα logs εκκίνησης του dashboard (όπου περιέχεται και το μοναδικό token σύνδεσης), τρέξε:
+docker logs timlog_aspire_dashboard -f
+
+Αφού ξεκινήσεις τα containers, άνοιξε τον browser σου και μπες στο Login URL με το token σου (παράδειγμα):
+http://localhost:18888/login?t=fee63e66faf33c214c53c3f75be06153
+
+Μέσα από το UI μπορείς να παρακολουθείς:
+- Structured Logs: Όλα τα logs του API σε ενιαία μορφή με δυνατότητα φιλτραρίσματος.
+- Traces: Το ακριβές μονοπάτι και τους χρόνους εκτέλεσης κάθε εισερχόμενου webhook call.
+- Metrics: Τη χρήση πόρων, CPU/Memory καθώς και μετρικές δικτύου και HTTP requests.

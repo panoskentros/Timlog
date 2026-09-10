@@ -1,0 +1,17 @@
+.env
+logs/
+Timlog.Api/appsettings.json
+Timlog.Api/appsettings.Development.json
+.idea/*
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+artifacts/
+publish/
+*.nupkg
+.DS_Store

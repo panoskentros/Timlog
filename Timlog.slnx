@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="Timlog.Api/Timlog.Api.csproj" />
+  <Project Path="Timlog.Application.Tests/Timlog.Application.Tests.csproj" />
+  <Project Path="Timlog.Application/Timlog.Application.csproj" />
+  <Project Path="Timlog.Domain.Tests/Timlog.Domain.Tests.csproj" />
+  <Project Path="Timlog.Domain/Timlog.Domain.csproj" />
+  <Project Path="Timlog.Infrastructure/Timlog.Infrastructure.csproj" />
+</Solution>

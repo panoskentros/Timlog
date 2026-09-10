@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: timlog_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: timlog_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: timlog_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: always
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: timlog_tunnel
+    restart: always
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+  aspire-dashboard:
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:latest
+    container_name: timlog_aspire_dashboard
+    ports:
+      - "18888:18888"
+      - "18889:18889"
+      - "18890:18890"
+    environment:
+      - DOTNET_DASHBOARD_UNAUTHENTICATED_ALLOW_ANONYMOUS=true
+    restart: always
+
+volumes:
+  pgdata:
+  ollama_data:

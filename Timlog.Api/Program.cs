@@ -15,6 +15,10 @@ using Timlog.Infrastructure.Data;
 using Timlog.Infrastructure.Repositories;
 using Timlog.Infrastructure.Security;
 using Timlog.Infrastructure.Telegram;
+using System.Globalization;
+
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo("el-GR");
+CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("el-GR");
 
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()

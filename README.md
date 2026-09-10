@@ -1,7 +1,7 @@
+**Live Demo:** Μπορείτε να δοκιμάσετε το bot στέλνοντας /setup εδώ: [t.me/Timlog_Pi5_bot](https://t.me/Timlog_Pi5_bot)
+Τρέχει σε test environment και θα χρειαστείτε credentials από την ΑΑΔΕ από το βήμα 2
+
 # Οδηγός Εγκατάστασης Timlog
-
-Πλήρης οδηγός για την ανάπτυξη (deployment) του backend API, των βάσεων δεδομένων και του Telegram webhook tunnel μέσω Docker Compose.
-
 ---
 
 ## 1. Δημιουργία Telegram Bot

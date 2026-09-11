@@ -22,7 +22,15 @@ public class SetupFlowHandler
 
     public bool IsInSetup(long chatId) => _stateService.GetSession(chatId) != null;
 
-    public void Start(long chatId) => _stateService.StartSession(chatId);
+    public string Start(long chatId)
+    {
+        _stateService.StartSession(chatId);
+        
+        return "⚠️ ΠΡΟΣΟΧΗ: Αυτό το bot είναι ένα δημόσιο demo και επικοινωνεί αποκλειστικά με το Test/Dev περιβάλλον της ΑΑΔΕ.\n" +
+               "Παρακαλώ χρησιμοποιήστε ΜΟΝΟ δοκιμαστικούς κωδικούς από το myDATA Dev Portal και ΠΟΤΕ πραγματικά/παραγωγικά στοιχεία.\n\n" +
+               "Προχωρώντας, κατανοείτε ότι τα δοκιμαστικά διαπιστευτήρια σας θα αποθηκευτούν τοπικά στον demo server για την εκτέλεση των δοκιμών.\n\n" +
+               "0/8: Εισάγετε το ΑΦΜ σας (ή /cancel για ακύρωση):";
+    }
 
     public async Task<string> ProcessStepAsync(long chatId, string text, CancellationToken cancellationToken = default)
     {

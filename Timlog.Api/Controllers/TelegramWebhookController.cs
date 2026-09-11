@@ -101,8 +101,10 @@ public class TelegramWebhookController : ControllerBase
                 if (text.Equals("/setup", StringComparison.OrdinalIgnoreCase))
                 {
                     _logger.LogInformation("Έναρξη /setup flow για ChatId: {ChatId}", chatId);
-                    _setupFlowHandler.Start(chatId);
-                    await _telegramClient.SendTextMessageAsync(chatId, "Έναρξη ρύθμισης. Εισάγετε το ΑΦΜ σας (πληκτρολογήστε /cancel για ακύρωση):", cancellationToken);
+                    
+                    var setupMessage = _setupFlowHandler.Start(chatId);
+                    await _telegramClient.SendTextMessageAsync(chatId, setupMessage, cancellationToken);
+                    
                     return Ok();
                 }
 

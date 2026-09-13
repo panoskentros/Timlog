@@ -134,3 +134,18 @@ http://localhost:18888/login?t=fee63e66faf33c214c53c3f75be06153
 - Structured Logs: Όλα τα logs του API σε ενιαία μορφή με δυνατότητα φιλτραρίσματος.
 - Traces: Το ακριβές μονοπάτι και τους χρόνους εκτέλεσης κάθε εισερχόμενου webhook call.
 - Metrics: Τη χρήση πόρων, CPU/Memory καθώς και μετρικές δικτύου και HTTP requests.
+
+## Running tests
+
+If you don't have .NET 10 installed locally, run tests inside Docker:
+
+```bash
+# via helper script
+./scripts/test-in-docker.sh
+# or via Makefile
+make test-docker
+```
+
+CI
+
+A GitHub Actions workflow is provided at .github/workflows/ci.yml to run build and tests on dotnet 10.0.x.
